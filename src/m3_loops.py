@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Alfred Mustafa.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -116,6 +116,24 @@ def run_test_practice_problem3():
         big_list.append(k)
     tests.append(st.SimpleTestCase(practice_problem3,
                                    [888, 1000,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 15th test:
+    big_list = []
+    for k in range(50, 100):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [50, 50,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 16th test:
+    big_list = []
+    for k in range(1, 10):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [1, 9,
                                     - math.sqrt(2) - 0.00000000001],
                                    big_list))
 
@@ -208,7 +226,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -216,6 +234,21 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
+    import math
+    seq = []
+
+    if n == 0:
+        return seq
+    if threshold > math.sqrt(2):
+        for j in range(n):
+            seq = seq + [start + j]
+        return seq
+
+    for k in range(start, 2000000):
+        if (math.sin(k) + math.cos(k)) > threshold:
+            seq = seq + [k]
+        if len(seq) == n:
+            return seq
 
 
 # ----------------------------------------------------------------------
