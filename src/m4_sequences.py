@@ -422,11 +422,11 @@ def practice_problem4d(sequence):
     count = 0
     seq = []
     for k in range(len(sequence)-1):
-        if is_prime(sequence[k]) is True and is_prime(sequence[k+1]) is True :
+        if is_prime(sequence[k]) is True and is_prime(sequence[k+1]) is True and sequence[k] != sequence[k+1]:
             seq = seq + [sequence[k]]
 
-    for i in range(len(seq)):
-        count = count + seq[i]
+    for t in range(len(seq)):
+        count = count + seq[t]
     return count
 
 # ----------------------------------------------------------------------
