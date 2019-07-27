@@ -103,7 +103,6 @@ def hourglass(window, n, point, radius, color):
     # ------------------------------------------------------------------
     import math
     y_offset = math.sqrt((radius*2)**2 - radius**2)
-    print(point)
     center = rg.Point(point.x, point.y)
     for k in range(n):
         for j in range(k+1):
@@ -210,19 +209,26 @@ def many_hourglasses(window, square, m, colors):
     # ------------------------------------------------------------------
     import math
     length = square.length_of_each_side
-    y_offset = math.sqrt((length/2)**2 - (length/4)**2)
+    y_offset = math.sqrt(length**2 - (length/2)**2)
     upperleft = rg.Point(square.center.x - (length/2), square.center.y - (length/2))
     bottomright = rg.Point(square.center.x + (length/2), square.center.y + (length/2))
+    n = 1
+    j = 0
     for k in range(m):
         rectangle = rg.Rectangle(upperleft, bottomright)
         rectangle.attach_to(window)
-        point = rectangle.get_center()
-        hourglass(window, k, point, (rectangle.get_width()/2), colors[k])
-
-        upperleft.x = upperleft.x + rectangle.get_width()
-        upperleft.y = upperleft.y + y_offset
-        bottomright.x = bottomright.x + rectangle.get_width()
-        bottomright.y = bottomright.y - y_offset
+        hourglass(window, k+1, rectangle.get_center(), length/2, colors[j])
+        print(j)
+        if j == len(colors)-1:
+            j = 0
+        else:
+            j = j + 1
+        width = rectangle.get_width()
+        n = n + 1
+        upperleft.x = upperleft.x + width
+        upperleft.y = upperleft.y - y_offset
+        bottomright.x = bottomright.x + length*n
+        bottomright.y = bottomright.y + y_offset
 
     window.render()
 
